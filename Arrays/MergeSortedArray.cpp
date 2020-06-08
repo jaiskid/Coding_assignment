@@ -17,13 +17,29 @@ using namespace std;
 #define PNF1(a,n,m) for(int i=1;i<=n;i++){for(int j=1;j<=m;j++){cout<<a[i][j]<<' ';}cout<<endl;}cout<<endl;
 #define AS 200001
 #define mod 1000000007
-void moveZeroes(vector<int>&nums) {
-	int pos = 0;
-	for (auto &num : nums) {
-		if (num) {
-			swap(nums[pos++], num);
+void merge(vector<int>&nums1, vector<int>&nums2) {
+	int m=nums1.size();
+	int n=nums2.size();
+	int i = m + n;
+	 
+	while (m > 0 and n > 0) {
+		if (nums1[m - 1] > nums2[n - 1])
+		{
+			nums1[i - 1] = nums1[m - 1];
+			--m;
 		}
+		else {
+			nums1[i - 1] = nums2[n - 1];
+			--n;
+		}
+		--i;
 	}
+	while (n > 0) {
+		nums1[n - 1] = nums2[n - 1];
+		n--;
+
+	}
+	return;
 }
 int main() {
 	fastIO
@@ -31,11 +47,17 @@ int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-	int n;ṭ
+	int m;
+	cin >> m;
+	vector<int>nums1;
+	nums1.resize(m);
+	F(nums1, m);
+	vector<int>nums2;
+	int n;
 	cin >> n;
-	vector<int>nums;
-	nums.resize(n);
-	F(nums, n);
-	moveZeroes(nums);
-	P(nums, n);
+	nums2.resize(n);
+	F(nums2, n);
+	merge(nums1, nums2);
+	P(nums1,n+m);
+
 }

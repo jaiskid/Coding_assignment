@@ -17,13 +17,18 @@ using namespace std;
 #define PNF1(a,n,m) for(int i=1;i<=n;i++){for(int j=1;j<=m;j++){cout<<a[i][j]<<' ';}cout<<endl;}cout<<endl;
 #define AS 200001
 #define mod 1000000007
-void moveZeroes(vector<int>&nums) {
-	int pos = 0;
-	for (auto &num : nums) {
-		if (num) {
-			swap(nums[pos++], num);
+int romanToInt(string s) {
+	unordered_map<char, int> numeral_map{{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
+	int decimal = 0;
+	for (int i = 0; i < s.length(); i++) {
+		if (i > 0 and numeral_map[s[i]] > numeral_map[s[i - 1]]) {
+			decimal += numeral_map[s[i]] - 2 * numeral_map[s[i - 1]];
+		}
+		else {
+			decimal += numeral_map[s[i]];
 		}
 	}
+	return decimal;
 }
 int main() {
 	fastIO
@@ -31,11 +36,8 @@ int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-	int n;ṭ
-	cin >> n;
-	vector<int>nums;
-	nums.resize(n);
-	F(nums, n);
-	moveZeroes(nums);
-	P(nums, n);
+	string s;
+	cin >> s;
+	cout << romanToInt(s);
+
 }

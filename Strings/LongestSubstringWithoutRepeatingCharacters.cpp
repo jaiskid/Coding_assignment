@@ -17,13 +17,17 @@ using namespace std;
 #define PNF1(a,n,m) for(int i=1;i<=n;i++){for(int j=1;j<=m;j++){cout<<a[i][j]<<' ';}cout<<endl;}cout<<endl;
 #define AS 200001
 #define mod 1000000007
-void moveZeroes(vector<int>&nums) {
-	int pos = 0;
-	for (auto &num : nums) {
-		if (num) {
-			swap(nums[pos++], num);
-		}
+int lengthOfLongestSubstring(string s) {
+	int n = s.size();
+	int ans = 0;
+	int index[128] = {}; //current index of character
+	//try to extend the range [i,j];
+	for (int j = 0, i = 0; j < n; j++) {
+		i = max(index[s[j]], i);
+		ans = max(ans, j - i + 1);
+		index[s[j]] = j + 1;
 	}
+	return ans;
 }
 int main() {
 	fastIO
@@ -31,11 +35,7 @@ int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-	int n;ṭ
-	cin >> n;
-	vector<int>nums;
-	nums.resize(n);
-	F(nums, n);
-	moveZeroes(nums);
-	P(nums, n);
+	string s;
+	cin >> s;
+	cout << lengthOfLongestSubstring(s);
 }

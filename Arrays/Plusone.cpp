@@ -1,6 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 #define ll long long int
 #define mp make_pair
 #define pb push_back
@@ -17,7 +16,7 @@ using namespace std;
 #define PNF1(a,n,m) for(int i=1;i<=n;i++){for(int j=1;j<=m;j++){cout<<a[i][j]<<' ';}cout<<endl;}cout<<endl;
 #define AS 200001
 #define mod 1000000007
-vector<int>plusone(vector<int>&digits) {
+vector<int> plusOne(vector<int>& digits) {
 	for (int i = digits.size() - 1; i >= 0; i--) {
 		if (digits[i] == 9) {
 			digits[i] = 0;
@@ -28,10 +27,9 @@ vector<int>plusone(vector<int>&digits) {
 		}
 	}
 	digits[0] = 1;
-	//digits.emplace_back(0);
+	digits.emplace_back(0);
 	return digits;
 }
-
 int main() {
 	fastIO
 #ifndef ONLINE_JUDGE
@@ -43,6 +41,6 @@ int main() {
 	vector<int>digits;
 	digits.resize(n);
 	F(digits, n);
-	vector<int>ans=plusone(digits);
-	P(ans,ans.size());
+	vector<int>ans = plusOne(digits);
+	P(ans, ans.size());
 }
