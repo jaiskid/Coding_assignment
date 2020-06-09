@@ -17,14 +17,27 @@ using namespace std;
 #define PNF1(a,n,m) for(int i=1;i<=n;i++){for(int j=1;j<=m;j++){cout<<a[i][j]<<' ';}cout<<endl;}cout<<endl;
 #define AS 200001
 #define mod 1000000007
-int longestPalindrome()
+int smallestFactorization(int a) {
+	if (a < 2) {
+		return a;
+	}
+	long result = 0, mul = 1;
+	for (int i = 9; i >= 2; --i) {
+		while (a % i == 0) {
+			a /= i;
+			result = mul * i + result;
+			mul *= 10;
+		}
+	}
+	return a == 1 and result <= INT_MAX ? result : 0;
+}
 int main() {
 	fastIO
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-	string s;
-	cin >> s;
-	cout << longestPalindrome(s);
+	int n;
+	cin >> n;
+	cout << smallestFactorization(n);
 }

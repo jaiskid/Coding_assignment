@@ -17,14 +17,31 @@ using namespace std;
 #define PNF1(a,n,m) for(int i=1;i<=n;i++){for(int j=1;j<=m;j++){cout<<a[i][j]<<' ';}cout<<endl;}cout<<endl;
 #define AS 200001
 #define mod 1000000007
-int longestPalindrome()
+vector<vector<int>> subsets(vector<int>&nums) {
+	vector<vector<int>> result(1);
+	sort(nums.begin(), nums.end());
+	for (int i = 0; i < nums.size(); i++) {
+		int size = result.size();
+		for (int j = 0; j < size; ++j) {
+			result.emplace_back(result[j]);
+			result.back().emplace_back(nums[i]);
+		}
+	}
+	return result;
+}
 int main() {
 	fastIO
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-	string s;
-	cin >> s;
-	cout << longestPalindrome(s);
+	int n;
+	cin >> n;
+	vector<int>nums;
+	nums.resize(n);
+	F(nums, n);
+	// P(nums, n);
+	vector<vector<int>> ans = subsets(nums);
+	cout << ans[0].size();
+	PNF(ans, ans.size(), ans[0].size());
 }

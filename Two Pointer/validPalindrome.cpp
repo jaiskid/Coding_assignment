@@ -17,7 +17,23 @@ using namespace std;
 #define PNF1(a,n,m) for(int i=1;i<=n;i++){for(int j=1;j<=m;j++){cout<<a[i][j]<<' ';}cout<<endl;}cout<<endl;
 #define AS 200001
 #define mod 1000000007
-int longestPalindrome()
+bool isPalindrome(string s) {
+	int i = 0, j = s.length() - 1;
+	while (i < j) {
+		if (!isalnum(s[i])) {
+			++i;
+		}
+		else if (!isalnum(s[j])) {
+			--j;
+		}
+		else if (tolower(s[i]) != tolower(s[j]))
+			return false;
+		else
+			++i, --j;
+
+	}
+	return true;
+}
 int main() {
 	fastIO
 #ifndef ONLINE_JUDGE
@@ -26,5 +42,6 @@ int main() {
 #endif
 	string s;
 	cin >> s;
-	cout << longestPalindrome(s);
+	cout << isPalindrome(s);
+
 }
